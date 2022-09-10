@@ -36,6 +36,4 @@ public class Rotta {
 		this.nVoli = nVoli;
 	}
 	
-	
-	
 }

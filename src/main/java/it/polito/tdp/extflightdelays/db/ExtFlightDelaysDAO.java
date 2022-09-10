@@ -39,7 +39,7 @@ public class ExtFlightDelaysDAO {
 		}
 	}
 
-	public void loadAllAirports(Map<Integer,Airport> idMap) {
+	public void loadAllAirports(Map<Integer,Airport> idMap) { // chiediamo al metodo di riempire la mappa
 		String sql = "SELECT * FROM airports";
 
 		try {
@@ -102,7 +102,8 @@ public class ExtFlightDelaysDAO {
 				+ "WHERE (a.id = f.ORIGIN_AIRPORT_ID OR a.id = f.DESTINATION_AIRPORT_ID) "
 				+ "GROUP BY a.id "
 				+ "HAVING COUNT(DISTINCT (f.AIRLINE_ID)) >= ?";
-		List<Airport> result = new ArrayList<Airport> ();
+		
+		List<Airport> result = new ArrayList<Airport>();
 		
 		try {
 			Connection conn = ConnectDB.getConnection();
@@ -138,7 +139,7 @@ public class ExtFlightDelaysDAO {
 				Airport sorgente = idMap.get(rs.getInt("a1"));
 				Airport destinazione = idMap.get(rs.getInt("a2"));
 				
-				if(sorgente != null && destinazione != null) {
+				if (sorgente != null && destinazione != null) {
 					result.add(new Rotta(sorgente, destinazione, rs.getInt("n")));
 				}
 				
@@ -153,13 +154,5 @@ public class ExtFlightDelaysDAO {
 		}
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 }
